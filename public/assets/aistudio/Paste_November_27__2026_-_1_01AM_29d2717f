@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barcelona 26/27 Kits — Clearance | Solobo Sports</title>
+<meta name="description" content="Barcelona 26/27 player-edition kits at clearance prices. Custom name and number printing. Cash on delivery across Bangladesh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   SOLOBO — Clearance drop page
+   One job: get the order. No header, no footer, no exits.
+   Edit CONFIG and KITS in the <script> at the bottom.
+   ========================================================================== */
+:root{
+  --chalk:#ECEDF0;        /* page */
+  --paper:#FFFFFF;        /* surfaces */
+  --ink:#15171D;          /* text */
+  --ink-2:#4A4E59;        /* secondary text */
+  --rule:#D6D8DE;         /* borders */
+  --red:#E3141F;          /* Solobo action red */
+  --red-press:#BF0D17;
+  --go:#0F8A4B;           /* savings */
+  /* set per kit by JS */
+  --kit-stage:#0E1F4D; --kit-on:#FFFFFF; --kit-trim:#E9B526;
+
+  --display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+  --body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font:400 16px/1.55 var(--body);color:var(--ink);background:var(--chalk);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,textarea{font:inherit;color:inherit}
+svg,img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:4px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Clock strip ---------- */
+.strip{background:var(--ink);color:#fff;font-size:14px}
+.strip-in{max-width:1360px;margin:0 auto;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{font:800 22px/1 var(--display);letter-spacing:.02em}
+.brand span{color:var(--red)}
+.clock{display:flex;align-items:center;gap:12px}
+.clock-digits{font:800 22px/1 var(--display);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.strip-note{color:#B9BCC6}
+
+/* ---------- Drop: stage + buy panel ---------- */
+.drop{max-width:1360px;margin:0 auto;padding:24px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(380px,.9fr);gap:24px;align-items:start}
+
+.stage{position:sticky;top:24px;background:var(--kit-stage);color:var(--kit-on);border-radius:28px;overflow:hidden;aspect-ratio:5/5.2;min-height:520px;transition:background .5s var(--ease),color .5s var(--ease);isolation:isolate}
+.stage-num{position:absolute;right:-3%;top:52%;transform:translateY(-50%);font:900 clamp(300px,42vw,640px)/.8 var(--display);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:3px var(--kit-on);opacity:.22;z-index:-1;user-select:none;transition:opacity .3s}
+.stage-top{position:absolute;inset:24px 24px auto 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.stage-kicker{font:800 clamp(32px,3.6vw,52px)/.92 var(--display);text-transform:uppercase;max-width:9ch}
+.stage-kicker small{display:block;font:500 14px/1.3 var(--body);text-transform:none;opacity:.75;margin-top:10px;max-width:none}
+.view{display:flex;background:rgba(0,0,0,.22);border-radius:999px;padding:4px;backdrop-filter:blur(6px)}
+.view button{padding:8px 16px;border-radius:999px;font-weight:600;font-size:14px;color:var(--kit-on);opacity:.75}
+.view button[aria-pressed="true"]{background:var(--kit-on);color:var(--kit-stage);opacity:1}
+.shirt{position:absolute;inset:16% 10% 10%;display:grid;place-items:center}
+.shirt svg{width:100%;height:100%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.35));transition:transform .5s var(--ease),opacity .25s}
+.shirt.out svg{opacity:0;transform:translateY(12px) scale(.97)}
+.stage-foot{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;font-size:14px}
+.off-tag{font:900 64px/.8 var(--display);letter-spacing:-.01em}
+.off-tag small{display:block;font:600 14px/1.2 var(--body);margin-top:6px;opacity:.8}
+
+/* ---------- Buy panel ---------- */
+.panel{background:var(--paper);border-radius:28px;padding:32px}
+.title{font:800 clamp(40px,4vw,60px)/.92 var(--display);text-transform:uppercase;letter-spacing:.005em}
+.lede{color:var(--ink-2);margin-top:10px;max-width:44ch}
+.proof{display:flex;gap:16px;margin-top:14px;font-size:14px;color:var(--ink-2)}
+.proof b{color:var(--ink)}
+
+.price{display:flex;align-items:baseline;gap:14px;margin-top:24px;padding-top:24px;border-top:1px solid var(--rule)}
+.price-now{font:900 56px/.9 var(--display);color:var(--red);white-space:nowrap}
+.price-was{white-space:nowrap;font-size:18px;color:var(--ink-2);text-decoration:line-through}
+.price-save{margin-left:auto;font-weight:600;color:var(--go);font-size:15px}
+
+.q{margin-top:28px}
+.q-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.q-head h2{font:600 15px/1.2 var(--body)}
+.q-head span,.q-head button{font-size:14px;color:var(--ink-2)}
+.q-head button{text-decoration:underline;text-underline-offset:3px}
+
+.kits{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kit{position:relative;border-radius:16px;aspect-ratio:1/1.12;background:var(--chalk);display:grid;place-items:center;padding:10px 6px 26px;border:2px solid transparent;transition:border-color .2s}
+.kit svg{width:84%}
+.kit[aria-pressed="true"]{border-color:var(--ink);background:#fff}
+.kit-name{position:absolute;left:0;right:0;bottom:7px;font-size:12px;font-weight:600;text-align:center}
+.kit-left{position:absolute;top:6px;right:6px;font-size:11px;font-weight:700;background:var(--ink);color:#fff;border-radius:999px;padding:1px 7px}
+.kit:disabled{opacity:.35;cursor:not-allowed}
+
+.sizes{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.size{height:52px;border-radius:12px;border:1.5px solid var(--rule);font-weight:600;position:relative;background:#fff;transition:border-color .15s,background .15s}
+.size:hover:not(:disabled){border-color:var(--ink)}
+.size[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.size:disabled{color:#A9ACB5;background:repeating-linear-gradient(-45deg,#fff 0 6px,#F3F4F6 6px 12px);cursor:not-allowed}
+.size-left{display:block;font-size:11px;font-weight:500;color:var(--red);line-height:1;margin-top:2px}
+.size[aria-pressed="true"] .size-left{color:#FFB3B7}
+.size-hint{font-size:13px;color:var(--ink-2);margin-top:8px;min-height:20px}
+
+.print{border:1.5px solid var(--rule);border-radius:16px;padding:16px;transition:border-color .2s}
+.print.on{border-color:var(--ink)}
+.print-toggle{display:flex;align-items:center;gap:12px;width:100%;text-align:left}
+.switch{width:44px;height:26px;border-radius:999px;background:var(--rule);position:relative;flex:none;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s var(--ease)}
+.print.on .switch{background:var(--ink)}
+.print.on .switch::after{transform:translateX(18px)}
+.print-toggle b{display:block;font-weight:600}
+.print-toggle small{color:var(--ink-2);font-size:13px}
+.print-fields{display:none;grid-template-columns:1fr 92px;gap:8px;margin-top:14px}
+.print.on .print-fields{display:grid}
+.print-fields input{height:48px;border:1.5px solid var(--rule);border-radius:12px;padding:0 14px;text-transform:uppercase;font-weight:600;letter-spacing:.04em;background:#fff}
+.print-fields input:focus{outline:0;border-color:var(--ink)}
+
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--rule);border-radius:16px;overflow:hidden}
+.tier{padding:12px 10px;font-size:13px;color:var(--ink-2);border-left:1.5px solid var(--rule);transition:background .2s}
+.tier:first-child{border-left:0}
+.tier b{display:block;font:800 22px/1 var(--display);color:var(--ink);margin-bottom:4px}
+.tier.on{background:#E8F6EE;color:#0B5F34}
+.tier.on b{color:var(--go)}
+
+.buy{display:grid;grid-template-columns:auto 1fr;gap:10px;margin-top:28px}
+.step{display:flex;align-items:center;border:1.5px solid var(--rule);border-radius:14px}
+.step button{width:46px;height:58px;font-size:22px}
+.step output{width:28px;text-align:center;font-weight:700;font-size:17px}
+.cta{height:58px;border-radius:14px;background:var(--red);color:#fff;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .15s,transform .1s}
+.cta:hover{background:var(--red-press)}
+.cta:active{transform:scale(.985)}
+.cta-price{font:800 20px/1 var(--display);opacity:.9}
+.add{margin-top:10px;width:100%;height:48px;border-radius:14px;border:1.5px solid var(--ink);font-weight:600}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-2)}
+.promise b{display:block;color:var(--ink);font-size:14px}
+
+/* ---------- Kit rail ---------- */
+.band{max-width:1360px;margin:0 auto;padding:64px 24px 0}
+.band-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}
+.band h2{font:800 clamp(36px,4.2vw,64px)/.92 var(--display);text-transform:uppercase;max-width:14ch}
+.band-head p{color:var(--ink-2);max-width:40ch}
+.rail{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{border-radius:24px;overflow:hidden;background:var(--paper);text-align:left;display:flex;flex-direction:column}
+.card-art{background:var(--c-stage);color:var(--c-on);aspect-ratio:1/1;display:grid;place-items:center;position:relative}
+.card-art svg{width:72%;filter:drop-shadow(0 18px 22px rgba(0,0,0,.3))}
+.card-body{padding:16px 18px 18px;display:flex;justify-content:space-between;align-items:end;gap:8px}
+.card-body b{font-weight:600;display:block}
+.card-body small{color:var(--ink-2);font-size:13px}
+.card-price{font:800 26px/1 var(--display);color:var(--red);text-align:right}
+.card-price s{display:block;font:400 13px/1.3 var(--body);color:var(--ink-2)}
+.card.is-out{opacity:.5}
+
+/* ---------- Details ---------- */
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.spec{background:var(--paper);border-radius:24px;padding:28px}
+.spec h3{font:800 28px/1 var(--display);text-transform:uppercase;margin-bottom:10px}
+.spec p{color:var(--ink-2);max-width:36ch}
+
+.guide{display:grid;grid-template-columns:1fr 1.4fr;gap:16px;align-items:stretch}
+.guide-note{background:var(--ink);color:#fff;border-radius:24px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.guide-note h3{font:800 40px/.95 var(--display);text-transform:uppercase}
+.guide-note p{color:#C4C7D0}
+.table{background:var(--paper);border-radius:24px;padding:8px 24px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:16px 8px;text-align:left;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+th{font-size:13px;font-weight:500;color:var(--ink-2)}
+td:first-child{font:800 24px/1 var(--display)}
+
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+.faq details{background:var(--paper);border-radius:20px;padding:0 24px}
+.faq summary{list-style:none;cursor:pointer;padding:22px 0;font-weight:600;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";width:12px;height:12px;flex:none;margin-top:6px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq p{color:var(--ink-2);padding-bottom:22px;max-width:56ch}
+
+.close{max-width:1360px;margin:64px auto 0;padding:0 24px 120px}
+.close-in{background:var(--kit-stage);color:var(--kit-on);border-radius:28px;padding:56px 40px;display:flex;justify-content:space-between;align-items:center;gap:24px;transition:background .5s}
+.close-in h2{font:900 clamp(44px,6vw,96px)/.86 var(--display);text-transform:uppercase}
+.close-in .cta{padding:0 32px;flex:none}
+.small-print{text-align:center;font-size:13px;color:var(--ink-2);margin-top:20px}
+
+/* ---------- Order drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(15,16,20,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:50}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(480px,100%);background:var(--paper);z-index:51;transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column}
+body.open .scrim{opacity:1;pointer-events:auto}
+body.open .drawer{transform:none}
+body.open{overflow:hidden}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--rule)}
+.d-head h2{font:800 30px/1 var(--display);text-transform:uppercase}
+.x{width:40px;height:40px;border-radius:50%;background:var(--chalk);font-size:20px}
+.d-body{flex:1;overflow-y:auto;padding:20px 24px 24px}
+.lines{display:grid;gap:10px}
+.line{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center}
+.line-art{width:64px;height:64px;border-radius:12px;background:var(--c-stage);display:grid;place-items:center}
+.line-art svg{width:78%}
+.line b{font-weight:600;font-size:15px;display:block;line-height:1.25}
+.line small{font-size:13px;color:var(--ink-2)}
+.line-r{text-align:right;font-weight:600}
+.line-r button{display:block;margin-left:auto;font-size:12px;color:var(--ink-2);text-decoration:underline;font-weight:400}
+.nudge{margin-top:14px;padding:12px 14px;border-radius:12px;background:#E8F6EE;color:#0B5F34;font-size:14px;font-weight:500;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.nudge button{font-weight:700;text-decoration:underline;white-space:nowrap}
+.sum{display:grid;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--rule);font-size:15px}
+.sum div{display:flex;justify-content:space-between}
+.sum .save{color:var(--go);font-weight:600}
+.sum .total{font-weight:700;font-size:17px;padding-top:10px;margin-top:4px;border-top:1px solid var(--rule)}
+.sum .total span:last-child{font:900 32px/1 var(--display)}
+
+.form{margin-top:24px;display:grid;gap:14px}
+.form h3{font-weight:600;font-size:15px}
+.f label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
+.f input,.f textarea{width:100%;height:52px;border:1.5px solid var(--rule);border-radius:12px;padding:0 14px;font-size:16px;background:#fff;transition:border-color .15s}
+.f textarea{height:80px;padding:12px 14px;resize:vertical}
+.f input:focus,.f textarea:focus{outline:0;border-color:var(--ink)}
+.f .err{display:none;font-size:13px;color:var(--red);margin-top:5px}
+.f.bad input,.f.bad textarea{border-color:var(--red)}
+.f.bad .err{display:block}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.zone{border:1.5px solid var(--rule);border-radius:12px;padding:12px 14px;cursor:pointer;display:block}
+.zone input{position:absolute;opacity:0}
+.zone b{display:flex;justify-content:space-between;font-weight:600;font-size:15px}
+.zone small{color:var(--ink-2);font-size:13px}
+.zone:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.zone:has(input:focus-visible){outline:3px solid var(--red);outline-offset:2px}
+.d-foot{padding:16px 24px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--rule)}
+.d-foot .cta{width:100%}
+.d-foot p{text-align:center;font-size:13px;color:var(--ink-2);margin-top:8px}
+.empty{padding:28px;text-align:center;border:1.5px dashed var(--rule);border-radius:16px;color:var(--ink-2)}
+
+.done{padding:48px 8px;text-align:center}
+.done-mark{width:72px;height:72px;margin:0 auto 18px;border-radius:50%;background:var(--go);display:grid;place-items:center}
+.done h3{font:800 40px/1 var(--display);text-transform:uppercase}
+.done p{color:var(--ink-2);margin:10px auto 0;max-width:34ch}
+
+/* ---------- Mobile bar + toast ---------- */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--paper);border-top:1px solid var(--rule);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:none;gap:12px;align-items:center;transform:translateY(105%);transition:transform .3s var(--ease)}
+.bar.show{transform:none}
+.bar-p{line-height:1.05}
+.bar-p b{font:900 28px/1 var(--display);color:var(--red);display:block}
+.bar-p small{font-size:12px;color:var(--ink-2)}
+.bar .cta{flex:1;height:52px}
+.toast{visibility:hidden;position:fixed;left:50%;bottom:24px;z-index:60;transform:translate(-50%,160%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:500;font-size:15px;transition:transform .35s var(--ease);max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+.wa{position:fixed;right:20px;bottom:24px;z-index:39;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.wa svg{width:26px}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1040px){
+  .drop{grid-template-columns:1fr;padding:16px}
+  .stage{position:relative;top:0;aspect-ratio:1/1;min-height:0}
+  .rail{grid-template-columns:repeat(2,1fr)}
+  .specs,.guide,.faq{grid-template-columns:1fr}
+  .bar{display:flex}
+  .wa{bottom:92px}
+  .toast{bottom:92px}
+}
+@media (max-width:560px){
+  .strip-in{padding:9px 16px}
+  .strip-note{display:none}
+  .panel{padding:22px;border-radius:24px}
+  .stage{border-radius:24px}
+  .stage-top{inset:16px 16px auto 16px}
+  .stage-foot{left:16px;right:16px;bottom:14px}
+  .off-tag{font-size:48px}
+  .band{padding:48px 16px 0}
+  .band-head{flex-direction:column;align-items:flex-start}
+  .rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px;scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .card{flex:0 0 72%;scroll-snap-align:start}
+  .close{padding:0 16px 110px}
+  .close-in{flex-direction:column;align-items:flex-start;padding:36px 24px}
+  .close-in .cta{width:100%}
+  .promise{grid-template-columns:1fr;gap:10px}
+  .stage{aspect-ratio:4/5}
+  .shirt{inset:22% 6% 20%}
+  .stage-kicker small{max-width:20ch}
+  .price{flex-wrap:wrap;gap:4px 12px}
+  .price-now{font-size:48px}
+  .price-save{margin-left:0;width:100%}
+  .kits{gap:6px}
+  .q-head span{display:none}
+  .wa{bottom:96px;right:14px;width:46px;height:46px}
+  .kit-name{font-size:11px}
+  .sizes{gap:6px}
+  .drawer{top:auto;height:92dvh;border-radius:24px 24px 0 0;transform:translateY(100%)}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- Clock strip -->
+<div class="strip">
+  <div class="strip-in">
+    <div class="brand">SOLOBO<span>.</span></div>
+    <div class="clock" role="timer" aria-live="off">
+      <span class="strip-note">Clearance prices end in</span>
+      <span class="clock-digits" id="clock">18:00:00</span>
+    </div>
+  </div>
+</div>
+
+<main>
+<!-- ================= Drop ================= -->
+<section class="drop" aria-label="Product">
+  <div class="stage" id="stage">
+    <div class="stage-num" id="stageNum" aria-hidden="true">10</div>
+    <div class="stage-top">
+      <p class="stage-kicker" id="stageKicker">Home kit<small id="stageSub">Blaugrana stripes, gold trim</small></p>
+      <div class="view" role="group" aria-label="Shirt view">
+        <button type="button" data-view="front" aria-pressed="true">Front</button>
+        <button type="button" data-view="back" aria-pressed="false">Back</button>
+      </div>
+    </div>
+    <div class="shirt" id="shirt"></div>
+    <div class="stage-foot">
+      <div class="off-tag" id="offTag">40% off<small id="stockLine">12 left in stock</small></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h1 class="title" id="title">Barcelona 26/27</h1>
+    <p class="lede">Player-edition fit in breathable match fabric. Last stock of the season, priced to clear.</p>
+    <!-- Replace with your real numbers -->
+    <div class="proof"><span><b id="rating">4.8</b> average from <b id="ratingCount">324</b> buyers</span></div>
+
+    <div class="price">
+      <span class="price-now" id="priceNow">Tk 890</span>
+      <span class="price-was" id="priceWas">Tk 1,490</span>
+      <span class="price-save" id="priceSave">You save Tk 600</span>
+    </div>
+
+    <div class="q">
+      <div class="q-head"><h2>Kit</h2><span id="kitName">Home</span></div>
+      <div class="kits" id="kits" role="group" aria-label="Choose kit"></div>
+    </div>
+
+    <div class="q">
+      <div class="q-head"><h2>Size</h2><button type="button" id="toGuide">Size guide</button></div>
+      <div class="sizes" id="sizes" role="group" aria-label="Choose size"></div>
+      <p class="size-hint" id="sizeHint">Between sizes? Take the larger one.</p>
+    </div>
+
+    <div class="q">
+      <div class="print" id="print">
+        <button type="button" class="print-toggle" id="printToggle" aria-expanded="false">
+          <span class="switch" aria-hidden="true"></span>
+          <span><b>Add your name and number · Tk 250</b><small>Official font. Preview it on the back of the shirt.</small></span>
+        </button>
+        <div class="print-fields">
+          <label class="vh" for="pName">Name</label>
+          <input id="pName" maxlength="12" placeholder="Name" autocomplete="off">
+          <label class="vh" for="pNum">Number</label>
+          <input id="pNum" maxlength="2" inputmode="numeric" placeholder="No.">
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-head"><h2>Buy more, pay less</h2><span>Applies to the whole order</span></div>
+      <div class="tiers" id="tiers"></div>
+    </div>
+
+    <div class="buy">
+      <div class="step">
+        <button type="button" id="minus" aria-label="Decrease quantity">−</button>
+        <output id="qty" aria-live="polite">1</output>
+        <button type="button" id="plus" aria-label="Increase quantity">+</button>
+      </div>
+      <button type="button" class="cta" id="orderNow">Order now <span class="cta-price" id="ctaPrice">Tk 890</span></button>
+    </div>
+    <button type="button" class="add" id="addAnother">Add to order and pick another kit</button>
+
+    <div class="promise">
+      <div><b>Pay on delivery</b>Nothing upfront</div>
+      <div><b>Check before paying</b>Open it at the door</div>
+      <div><b>Size exchange</b>Within 7 days</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Kit rail ================= -->
+<section class="band" aria-labelledby="railH">
+  <div class="band-head">
+    <h2 id="railH">Every kit in the clearance</h2>
+    <p>Mix kits in one order. Two or more and the bundle price kicks in automatically.</p>
+  </div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<!-- ================= Details ================= -->
+<section class="band" aria-labelledby="specH">
+  <div class="band-head"><h2 id="specH">Made for match day</h2></div>
+  <div class="specs">
+    <div class="spec"><h3>Fabric</h3><p>Lightweight knit with laser-cut vents under the arms. Dries fast in Dhaka heat.</p></div>
+    <div class="spec"><h3>Fit</h3><p>Slim athletic cut, the same pattern players wear. Size up for a relaxed fit.</p></div>
+    <div class="spec"><h3>Finish</h3><p>Heat-pressed crest and sponsor. Wash inside out, cold, and they stay sharp.</p></div>
+  </div>
+</section>
+
+<section class="band" id="guide" aria-labelledby="guideH">
+  <div class="guide">
+    <div class="guide-note">
+      <h3 id="guideH">Find your size</h3>
+      <p>Measure a T-shirt that fits you well, flat across the chest, and match it to the table. Wrong size? Exchange it within 7 days.</p>
+    </div>
+    <div class="table">
+      <table>
+        <thead><tr><th>Size</th><th>Chest</th><th>Length</th><th>Height</th></tr></thead>
+        <tbody>
+          <tr><td>S</td><td>36 in</td><td>27 in</td><td>5′0″–5′3″</td></tr>
+          <tr><td>M</td><td>38 in</td><td>28 in</td><td>5′3″–5′6″</td></tr>
+          <tr><td>L</td><td>40 in</td><td>29 in</td><td>5′6″–5′9″</td></tr>
+          <tr><td>XL</td><td>42 in</td><td>30 in</td><td>5′9″–6′0″</td></tr>
+          <tr><td>XXL</td><td>44 in</td><td>31 in</td><td>6′0″ and up</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="faqH">
+  <div class="band-head"><h2 id="faqH">Before you order</h2></div>
+  <div class="faq">
+    <details><summary>Do I pay anything upfront?</summary><p>No. You pay the delivery person in cash after you have opened and checked the shirt.</p></details>
+    <details><summary>How fast is delivery?</summary><p>Inside Dhaka in 1–2 days. Outside Dhaka in 2–4 days. We call to confirm before dispatch.</p></details>
+    <details><summary>What if the size is wrong?</summary><p>Exchange within 7 days for another size. You only cover delivery. Printed shirts can't be exchanged.</p></details>
+    <details><summary>Will you restock at this price?</summary><p>No. These are the last units of the season. When a size is gone, it's gone.</p></details>
+  </div>
+</section>
+
+<section class="close" aria-label="Order">
+  <div class="close-in">
+    <h2>Last kits.<br>Last call.</h2>
+    <button type="button" class="cta" id="closeCta">Order now <span class="cta-price" id="closePrice">Tk 890</span></button>
+  </div>
+  <p class="small-print">Solobo Sports · Questions? Call 01XXXXXXXXX</p>
+</section>
+</main>
+
+<!-- Mobile buy bar -->
+<div class="bar" id="bar">
+  <div class="bar-p"><b id="barPrice">Tk 890</b><small id="barMeta">Home · pick a size</small></div>
+  <button type="button" class="cta" id="barCta">Order now</button>
+</div>
+
+<a class="wa" href="https://wa.me/8801XXXXXXXXX" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1.9 2 1.2 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg>
+</a>
+
+<!-- Order drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" aria-hidden="true">
+  <div class="d-head">
+    <h2 id="dTitle">Your order</h2>
+    <button type="button" class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="d-body" id="dBody">
+    <div class="lines" id="lines"></div>
+    <div class="nudge" id="nudge" hidden><span id="nudgeText"></span><button type="button" id="nudgeBtn">Add a kit</button></div>
+    <div class="sum" id="sum">
+      <div><span>Subtotal</span><span id="sSub">Tk 0</span></div>
+      <div class="save" id="sDiscRow" hidden><span id="sDiscLabel">Bundle saving</span><span id="sDisc">−Tk 0</span></div>
+      <div><span>Delivery</span><span id="sShip">Tk 70</span></div>
+      <div class="total"><span>Total to pay on delivery</span><span id="sTotal">Tk 0</span></div>
+    </div>
+
+    <form class="form" id="form" novalidate>
+      <h3>Where should we deliver?</h3>
+      <div class="f" id="fName"><label for="name">Full name</label><input id="name" autocomplete="name"><div class="err">Enter your name.</div></div>
+      <div class="f" id="fPhone"><label for="phone">Mobile number</label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="01XXXXXXXXX" maxlength="14"><div class="err">Enter an 11-digit number starting with 01.</div></div>
+      <div class="f" id="fAddr"><label for="addr">Full address</label><textarea id="addr" autocomplete="street-address" placeholder="House, road, area, thana, district"></textarea><div class="err">Enter your full address so the rider can find you.</div></div>
+      <fieldset class="f" style="border:0">
+        <legend style="font-size:14px;font-weight:500;margin-bottom:6px">Delivery area</legend>
+        <div class="zones">
+          <label class="zone"><input type="radio" name="zone" value="inside" checked><b><span>Inside Dhaka</span><span id="zIn">Tk 70</span></b><small>1–2 days</small></label>
+          <label class="zone"><input type="radio" name="zone" value="outside"><b><span>Outside Dhaka</span><span id="zOut">Tk 130</span></b><small>2–4 days</small></label>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="d-foot" id="dFoot">
+    <button type="submit" form="form" class="cta" id="submit">Place order <span class="cta-price" id="submitPrice">Tk 0</span></button>
+    <p>Cash on delivery. We'll call to confirm.</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ==========================================================================
+   CONFIG — edit these to launch a new clearance page
+   ========================================================================== */
+const CONFIG = {
+  hours: 18,                       // countdown per visitor; set `endsAt` for a fixed deadline
+  endsAt: null,                    // e.g. '2026-11-30T23:59:00+06:00'
+  shipping: { inside: 70, outside: 130 },
+  freeShippingFrom: 3,
+  tiers: [                         // discount per shirt
+    { min: 1, off: 0,   label: '1 shirt',  note: 'Clearance price' },
+    { min: 2, off: 100, label: '2 shirts', note: 'Tk 100 off each' },
+    { min: 3, off: 150, label: '3+',       note: 'Tk 150 off each, free delivery' }
+  ],
+  printPrice: 250,
+  defaultBack: { name: 'SOLOBO', num: '10' },
+  orderEndpoint: '',               // POST JSON here, e.g. '/api/orders/landing'. Empty = demo mode.
+};
+
+/* image / imageBack: your product photo URLs (transparent PNG works best).
+   Leave empty to use the drawn placeholder shirt. */
+const KITS = [
+  { id:'fcb-home-2627',  name:'Barcelona Home 26/27',  short:'Home',  note:'Blaugrana stripes, gold trim',
+    price:890, was:1490, sizes:{S:0,M:3,L:5,XL:3,XXL:1}, image:'', imageBack:'',
+    look:{ pattern:'stripes', a:'#A2214A', b:'#1A3F94', trim:'#E9B526', text:'#E9B526' },
+    stage:'#0E1F4D', on:'#FFFFFF' },
+  { id:'fcb-away-2627',  name:'Barcelona Away 26/27',  short:'Away',  note:'Sunflower with garnet detail',
+    price:850, was:1450, sizes:{S:1,M:2,L:2,XL:1,XXL:0}, image:'', imageBack:'',
+    look:{ pattern:'solid', a:'#F2CF3A', b:'#F2CF3A', trim:'#8E1638', text:'#8E1638' },
+    stage:'#4A0C22', on:'#F2CF3A' },
+  { id:'fcb-third-2627', name:'Barcelona Third 26/27', short:'Third', note:'Carbon black, red flash',
+    price:850, was:1450, sizes:{S:0,M:0,L:2,XL:2,XXL:0}, image:'', imageBack:'',
+    look:{ pattern:'solid', a:'#1C1D22', b:'#1C1D22', trim:'#E3141F', text:'#F4F4F5' },
+    stage:'#2A2B31', on:'#FFFFFF' },
+  { id:'fcb-retro-09',   name:'Barcelona Retro 2009',  short:'Retro 09', note:'The treble season, half-and-half',
+    price:990, was:1690, sizes:{S:1,M:2,L:3,XL:2,XXL:1}, image:'', imageBack:'',
+    look:{ pattern:'halves', a:'#A2214A', b:'#1A3F94', trim:'#E9B526', text:'#E9B526' },
+    stage:'#5A0E27', on:'#FFFFFF' },
+];
+
+/* ==========================================================================
+   Helpers
+   ========================================================================== */
+const $ = s => document.querySelector(s);
+const tk = n => 'Tk ' + Math.round(n).toLocaleString('en-IN');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const stockOf = k => Object.values(k.sizes).reduce((a,b)=>a+b,0);
+let uid = 0;
+
+/* Placeholder shirt — shaded, with collar, cuffs and seams. */
+function shirt(k, side='front', back=CONFIG.defaultBack){
+  const L = k.look, id = 's' + (uid++);
+  const img = side === 'back' ? k.imageBack : k.image;
+  if (img) return `<img src="${esc(img)}" alt="${esc(k.name)} ${side}" loading="lazy">`;
+  let fill;
+  if (L.pattern === 'stripes'){
+    fill = `<pattern id="${id}p" width="44" height="10" patternUnits="userSpaceOnUse" x="12"><rect width="22" height="10" fill="${L.a}"/><rect x="22" width="22" height="10" fill="${L.b}"/></pattern>`;
+  } else if (L.pattern === 'halves'){
+    fill = `<linearGradient id="${id}p" x1="0" x2="1"><stop offset=".5" stop-color="${side==='back'?L.b:L.a}"/><stop offset=".5" stop-color="${side==='back'?L.a:L.b}"/></linearGradient>`;
+  } else {
+    fill = `<linearGradient id="${id}p"><stop stop-color="${L.a}"/></linearGradient>`;
+  }
+  const body = 'M78 30 L46 40 L10 74 L34 118 L58 104 L58 226 Q120 236 182 226 L182 104 L206 118 L230 74 L194 40 L162 30 Q120 54 78 30Z';
+  const front = side === 'front';
+  const nm = esc((back.name || '').toUpperCase().slice(0,12)), no = esc(back.num || '');
+  const decor = front
+    ? `<path d="M147 70 l10 0 0 9 q0 7 -5 10 q-5 -3 -5 -10z" fill="${L.trim}"/>
+       <path d="M86 72 q5 -4 10 0 q-5 4 -10 0z" fill="${L.trim}" opacity=".9"/>
+       <rect x="92" y="112" width="56" height="12" rx="2" fill="${L.text}" opacity=".85"/>`
+    : `<text x="120" y="96" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="${nm.length>8?17:21}" letter-spacing="1.5" fill="${L.text}">${nm}</text>
+       <text x="120" y="182" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="900" font-size="82" fill="${L.text}">${no}</text>`;
+  return `<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>${fill}
+    <linearGradient id="${id}s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset=".22" stop-color="#000" stop-opacity="0"/><stop offset=".55" stop-color="#fff" stop-opacity=".07"/><stop offset=".8" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient>
+    <linearGradient id="${id}v" y1="0" y2="1" x1="0" x2="0"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
+    <clipPath id="${id}c"><path d="${body}"/></clipPath>
+  </defs>
+  <path d="${body}" fill="url(#${id}p)"/>
+  <g clip-path="url(#${id}c)">
+    ${decor}
+    <rect width="240" height="240" fill="url(#${id}s)"/>
+    <rect width="240" height="240" fill="url(#${id}v)"/>
+    <path d="M58 104 L58 230 M182 104 L182 230" stroke="#000" stroke-opacity=".18" stroke-width="1.2"/>
+    <path d="M78 30 Q72 70 58 104 M162 30 Q168 70 182 104" stroke="#000" stroke-opacity=".12" stroke-width="1.2" fill="none"/>
+    <path d="M10 74 L34 118 L40 115 L16 71Z M230 74 L206 118 L200 115 L224 71Z" fill="${L.trim}"/>
+  </g>
+  ${front
+    ? `<path d="M78 30 Q120 54 162 30 L156 27 Q120 44 84 27Z" fill="${L.trim}"/><path d="M84 27 Q120 44 156 27 L148 25 Q120 36 92 25Z" fill="#000" opacity=".35"/>`
+    : `<path d="M78 30 Q120 42 162 30 L156 27 Q120 36 84 27Z" fill="${L.trim}"/>`}
+  </svg>`;
+}
+
+/* ==========================================================================
+   State
+   ========================================================================== */
+const S = { k:0, size:null, qty:1, print:false, view:'front', cart:[] };
+const kit = () => KITS[S.k];
+const back = () => S.print ? { name: $('#pName').value.trim() || CONFIG.defaultBack.name, num: $('#pNum').value.trim() || CONFIG.defaultBack.num } : CONFIG.defaultBack;
+const cartQty = () => S.cart.reduce((a,c)=>a+c.qty,0);
+const tierFor = n => [...CONFIG.tiers].reverse().find(t => n >= t.min) || CONFIG.tiers[0];
+
+/* ==========================================================================
+   Render
+   ========================================================================== */
+function paintStage(animate){
+  const k = kit(), root = document.documentElement.style;
+  root.setProperty('--kit-stage', k.stage); root.setProperty('--kit-on', k.on);
+  const draw = () => { $('#shirt').innerHTML = shirt(k, S.view, back()); };
+  if (animate){ $('#shirt').classList.add('out'); setTimeout(()=>{ draw(); $('#shirt').classList.remove('out'); }, 200); }
+  else draw();
+  $('#stageNum').textContent = back().num || '10';
+  $('#stageKicker').firstChild.nodeValue = k.short + (k.short.length < 6 ? ' kit' : '');
+  $('#stageSub').textContent = k.note;
+  const left = stockOf(k);
+  $('#offTag').firstChild.nodeValue = Math.round((1 - k.price/k.was)*100) + '% off';
+  $('#stockLine').textContent = left ? `${left} left in stock` : 'Sold out';
+  document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === S.view));
+}
+function paintPanel(){
+  const k = kit();
+  $('#title').textContent = k.name.replace(/ (Home|Away|Third|Retro)/,'').trim();
+  $('#priceNow').textContent = tk(k.price);
+  $('#priceWas').textContent = tk(k.was);
+  $('#priceSave').textContent = 'You save ' + tk(k.was - k.price);
+  $('#kitName').textContent = k.short;
+  $('#kits').innerHTML = KITS.map((x,i) => {
+    const left = stockOf(x);
+    return `<button type="button" class="kit" data-k="${i}" aria-pressed="${i===S.k}" ${left?'':'disabled'} aria-label="${esc(x.short)}, ${tk(x.price)}${left?'':' sold out'}">
+      ${left && left <= 6 ? `<span class="kit-left">${left} left</span>` : ''}${shirt(x)}<span class="kit-name">${esc(x.short)}</span></button>`;
+  }).join('');
+  $('#sizes').innerHTML = Object.entries(k.sizes).map(([s,n]) =>
+    `<button type="button" class="size" data-s="${s}" ${n?'':'disabled'} aria-pressed="${S.size===s}" aria-label="${s}${n?`, ${n} left`:', sold out'}">${s}${n && n<=2 ? `<span class="size-left">${n} left</span>` : ''}</button>`).join('');
+  const n = S.size ? k.sizes[S.size] : 0;
+  $('#sizeHint').textContent = S.size ? (n <= 2 ? `Only ${n} left in ${S.size}. Order now to hold it.` : `${S.size} is in stock.`) : 'Between sizes? Take the larger one.';
+  paintPrice();
+}
+function paintPrice(){
+  const k = kit(), unit = k.price + (S.print ? CONFIG.printPrice : 0);
+  const n = cartQty() + S.qty, t = tierFor(n);
+  const each = unit - t.off;
+  $('#ctaPrice').textContent = tk(each * S.qty);
+  $('#closePrice').textContent = tk(k.price);
+  $('#barPrice').textContent = tk(each * S.qty);
+  $('#barMeta').textContent = `${k.short} · ${S.size ? 'size ' + S.size : 'pick a size'}`;
+  $('#tiers').innerHTML = CONFIG.tiers.map(x => `<div class="tier ${x===t?'on':''}"><b>${x.label}</b>${x.note}</div>`).join('');
+}
+function paintRail(){
+  $('#rail').innerHTML = KITS.map((x,i) => {
+    const left = stockOf(x);
+    return `<button type="button" class="card ${left?'':'is-out'}" data-k="${i}" style="--c-stage:${x.stage};--c-on:${x.on}">
+      <div class="card-art">${shirt(x)}</div>
+      <div class="card-body"><div><b>${esc(x.short)}</b><small>${left ? left + ' left' : 'Sold out'}</small></div>
+      <div class="card-price">${tk(x.price)}<s>${tk(x.was)}</s></div></div></button>`;
+  }).join('');
+}
+
+/* ==========================================================================
+   Cart + drawer
+   ========================================================================== */
+function addCurrent(){
+  const k = kit();
+  if (!S.size){ toast('Pick a size first.'); const el = $('#sizes'); el.scrollIntoView({behavior:'smooth', block:'center'}); el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:280}); return false; }
+  const pr = S.print ? { name: $('#pName').value.trim().toUpperCase(), num: $('#pNum').value.trim() } : null;
+  if (pr && !pr.name && !pr.num){ toast('Type a name or number to print.'); $('#pName').focus(); return false; }
+  const key = [k.id, S.size, pr ? pr.name + '#' + pr.num : ''].join('|');
+  const max = k.sizes[S.size];
+  const have = S.cart.filter(c => c.id === k.id && c.size === S.size).reduce((a,c)=>a+c.qty,0);
+  if (have >= max){ toast(`All ${max} in ${S.size} are already in your order.`); return false; }
+  const add = Math.min(S.qty, max - have);
+  const hit = S.cart.find(c => c.key === key);
+  if (hit) hit.qty += add; else S.cart.push({ key, id:k.id, size:S.size, qty:add, print:pr });
+  S.qty = 1; $('#qty').textContent = 1;
+  paintPrice(); paintCart();
+  return true;
+}
+function totals(){
+  const n = cartQty(), t = tierFor(n);
+  let sub = 0;
+  S.cart.forEach(c => { const k = KITS.find(x=>x.id===c.id); sub += (k.price + (c.print ? CONFIG.printPrice : 0)) * c.qty; });
+  const disc = n ? t.off * n : 0;
+  const zone = document.querySelector('input[name=zone]:checked').value;
+  const ship = !n ? 0 : (n >= CONFIG.freeShippingFrom ? 0 : CONFIG.shipping[zone]);
+  return { n, sub, disc, ship, total: sub - disc + ship };
+}
+function paintCart(){
+  const box = $('#lines');
+  box.innerHTML = S.cart.length ? S.cart.map((c,i) => {
+    const k = KITS.find(x=>x.id===c.id), unit = k.price + (c.print ? CONFIG.printPrice : 0);
+    return `<div class="line"><div class="line-art" style="--c-stage:${k.stage}">${shirt(k)}</div>
+      <div><b>${esc(k.name)}</b><small>Size ${c.size} · Qty ${c.qty}${c.print ? ` · Print ${esc(c.print.name)} ${esc(c.print.num)}` : ''}</small></div>
+      <div class="line-r">${tk(unit*c.qty)}<button type="button" data-rm="${i}">Remove</button></div></div>`;
+  }).join('') : `<div class="empty">Your order is empty. Pick a kit and size to start.</div>`;
+  const r = totals();
+  $('#sSub').textContent = tk(r.sub);
+  $('#sDiscRow').hidden = !r.disc;
+  $('#sDiscLabel').textContent = `Bundle saving, ${r.n} shirts`;
+  $('#sDisc').textContent = '−' + tk(r.disc);
+  $('#sShip').textContent = r.n && r.ship === 0 ? 'Free' : tk(r.ship);
+  $('#sTotal').textContent = tk(r.total);
+  $('#submitPrice').textContent = tk(r.total);
+  $('#zIn').textContent = r.n >= CONFIG.freeShippingFrom ? 'Free' : tk(CONFIG.shipping.inside);
+  $('#zOut').textContent = r.n >= CONFIG.freeShippingFrom ? 'Free' : tk(CONFIG.shipping.outside);
+  const next = CONFIG.tiers.find(t => t.min > r.n);
+  $('#nudge').hidden = !(r.n && next);
+  if (r.n && next){
+    const more = next.min - r.n;
+    $('#nudgeText').textContent = `Add ${more} more shirt${more>1?'s':''} and save ${tk(next.off*next.min - tierFor(r.n).off*r.n)}${next.min >= CONFIG.freeShippingFrom ? ' plus free delivery' : ''}.`;
+  }
+  $('#sum').hidden = !S.cart.length;
+}
+let lastFocus;
+function openDrawer(){
+  lastFocus = document.activeElement;
+  document.body.classList.add('open'); $('#drawer').setAttribute('aria-hidden','false');
+  setTimeout(()=> (S.cart.length ? $('#name') : $('#dClose')).focus({preventScroll:true}), 350);
+}
+function closeDrawer(){
+  document.body.classList.remove('open'); $('#drawer').setAttribute('aria-hidden','true');
+  if (lastFocus) lastFocus.focus({preventScroll:true});
+}
+function orderNow(){ if (!S.cart.length || S.size){ if (S.size && !addCurrent()) return; if (!S.cart.length && !addCurrent()) return; } openDrawer(); }
+
+/* ==========================================================================
+   Events
+   ========================================================================== */
+document.addEventListener('click', e => {
+  const k = e.target.closest('[data-k]');
+  if (k){
+    const i = +k.dataset.k; if (!stockOf(KITS[i])) return;
+    if (k.classList.contains('card')) window.scrollTo({top:0, behavior:'smooth'});
+    if (i !== S.k){ S.k = i; S.size = null; S.qty = 1; $('#qty').textContent = 1; paintStage(true); paintPanel(); }
+    return;
+  }
+  const s = e.target.closest('.size[data-s]');
+  if (s){ S.size = s.dataset.s; S.qty = Math.min(S.qty, kit().sizes[S.size]); $('#qty').textContent = S.qty; paintPanel(); return; }
+  const v = e.target.closest('[data-view]');
+  if (v){ S.view = v.dataset.view; paintStage(true); return; }
+  const rm = e.target.closest('[data-rm]');
+  if (rm){ S.cart.splice(+rm.dataset.rm, 1); paintCart(); paintPrice(); }
+});
+$('#minus').onclick = () => { S.qty = Math.max(1, S.qty - 1); $('#qty').textContent = S.qty; paintPrice(); };
+$('#plus').onclick = () => {
+  const max = S.size ? kit().sizes[S.size] : 5;
+  if (S.qty >= max){ toast(S.size ? `Only ${max} left in ${S.size}.` : 'Pick a size first.'); return; }
+  S.qty++; $('#qty').textContent = S.qty; paintPrice();
+};
+$('#printToggle').onclick = () => {
+  S.print = !S.print;
+  $('#print').classList.toggle('on', S.print);
+  $('#printToggle').setAttribute('aria-expanded', S.print);
+  if (S.print){ S.view = 'back'; setTimeout(()=>$('#pName').focus(), 50); }
+  paintStage(true); paintPrice();
+};
+const livePrint = () => { S.view = 'back'; $('#shirt').innerHTML = shirt(kit(), 'back', back()); $('#stageNum').textContent = back().num || '10'; document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === 'back')); };
+$('#pName').addEventListener('input', e => { e.target.value = e.target.value.replace(/[^a-zA-Z .'-]/g,'').toUpperCase(); livePrint(); });
+$('#pNum').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g,''); livePrint(); });
+
+$('#orderNow').onclick = () => { if (addCurrent()) openDrawer(); };
+$('#addAnother').onclick = () => { if (addCurrent()){ toast(`Added. Pick your next kit.`); S.size = null; paintPanel(); $('#kits').scrollIntoView({behavior:'smooth', block:'center'}); } };
+$('#barCta').onclick = () => { if (S.size){ if (addCurrent()) openDrawer(); } else if (S.cart.length) openDrawer(); else { addCurrent(); } };
+$('#closeCta').onclick = () => { if (S.cart.length) openDrawer(); else { window.scrollTo({top:0, behavior:'smooth'}); toast('Pick a kit and size to start.'); } };
+$('#toGuide').onclick = () => document.getElementById('guide').scrollIntoView({behavior:'smooth'});
+$('#nudgeBtn').onclick = () => { closeDrawer(); S.size = null; paintPanel(); window.scrollTo({top:0, behavior:'smooth'}); };
+$('#dClose').onclick = closeDrawer; $('#scrim').onclick = closeDrawer;
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('open')) closeDrawer(); });
+document.querySelectorAll('input[name=zone]').forEach(r => r.addEventListener('change', paintCart));
+
+$('#phone').addEventListener('input', e => { e.target.value = e.target.value.replace(/[০-৯]/g, d => '০১২৩৪৫৬৭৮৯'.indexOf(d)).replace(/[^\d+]/g,''); });
+['name','phone','addr'].forEach(id => $('#'+id).addEventListener('input', () => $('#'+id).closest('.f').classList.remove('bad')));
+
+$('#form').addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!S.cart.length){ toast('Your order is empty.'); return; }
+  const name = $('#name').value.trim(), phone = $('#phone').value.trim().replace(/^\+?88/,''), addr = $('#addr').value.trim();
+  const checks = [['#fName', name.length >= 2], ['#fPhone', /^01[3-9]\d{8}$/.test(phone)], ['#fAddr', addr.length >= 10]];
+  let first = null;
+  checks.forEach(([id, ok]) => { $(id).classList.toggle('bad', !ok); if (!ok && !first) first = id; });
+  if (first){ $(first).querySelector('input,textarea').focus(); return; }
+
+  const r = totals();
+  const payload = {
+    customer: { name, phone, address: addr, zone: document.querySelector('input[name=zone]:checked').value },
+    items: S.cart.map(c => ({ product_id: c.id, size: c.size, qty: c.qty, print: c.print })),
+    subtotal: r.sub, discount: r.disc, shipping: r.ship, total: r.total,
+    payment: 'COD', source: 'clearance-landing', page: location.pathname
+  };
+  const btn = $('#submit'); btn.disabled = true; btn.firstChild.nodeValue = 'Placing order… ';
+  try{
+    if (CONFIG.orderEndpoint){
+      const res = await fetch(CONFIG.orderEndpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      if (!res.ok) throw new Error(res.status);
+    } else { console.log('[demo] order payload', payload); await new Promise(r => setTimeout(r, 700)); }
+    // if (window.fbq) fbq('track', 'Purchase', { value: r.total, currency: 'BDT' });
+    $('#dBody').innerHTML = `<div class="done"><div class="done-mark"><svg width="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg></div>
+      <h3>Order placed</h3><p>Thanks, ${esc(name.split(' ')[0])}. We'll call ${esc(phone)} shortly to confirm. Pay ${tk(r.total)} when it arrives.</p></div>`;
+    $('#dFoot').hidden = true; S.cart = []; paintPrice();
+  } catch(err){
+    toast('Order not sent. Check your connection and try again, or message us on WhatsApp.');
+  } finally { btn.disabled = false; btn.firstChild.nodeValue = 'Place order '; }
+});
+
+/* Toast */
+let tt; function toast(m){ const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(()=>t.classList.remove('show'), 2400); }
+
+/* Countdown */
+(function(){
+  let end = CONFIG.endsAt ? Date.parse(CONFIG.endsAt) : 0;
+  if (!end){
+    try { end = +localStorage.getItem('solobo_clear_end'); } catch(_){}
+    if (!end || end < Date.now()){ end = Date.now() + CONFIG.hours*3600e3; try { localStorage.setItem('solobo_clear_end', end); } catch(_){} }
+  }
+  const p = n => String(n).padStart(2,'0');
+  const tick = () => { const d = Math.max(0, end - Date.now()); $('#clock').textContent = `${p(Math.floor(d/3600e3))}:${p(Math.floor(d%3600e3/60e3))}:${p(Math.floor(d%60e3/1e3))}`; };
+  tick(); setInterval(tick, 1000);
+})();
+
+/* Mobile bar: show once the main CTA scrolls away */
+new IntersectionObserver(([en]) => $('#bar').classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0)).observe($('#orderNow'));
+
+/* Init */
+paintStage(false); paintPanel(); paintRail(); paintCart();
+</script>
+</body>
+</html>

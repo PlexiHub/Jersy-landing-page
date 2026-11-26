@@ -1,0 +1,6 @@
+{
+  "name": "Solobo Sports — Barcelona 26/27 Kits Clearance",
+  "description": "Barcelona 26/27 player-edition kits at clearance prices. Custom name and number printing. Cash on delivery across Bangladesh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
